@@ -1,23 +1,26 @@
 package Controlador;
 
-import Model.*;
-import Views.Vista_juego;
+import Modelo.Audio;
+import Modelo.Barra;
+import Modelo.Bola;
+import Vista.Vista_juego;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
+
 import java.util.Objects;
 import java.util.Random;
 
-public class Controller {
+public class Contolador {
+    private static int dificultad = 10, velocidad = 5;
     private Vista_juego scene;
     private Bola bola;
-    private static int dificultad = 10, velocidad = 5;
     private Barra CPUGroup, PlayerGroup;
 
-    Controller() {
+    Contolador() {
         scene = new Vista_juego();
 
         CPUGroup = scene.getCPU();
@@ -30,6 +33,14 @@ public class Controller {
         configuraciones();
 
         Main.setScene(scene);
+    }
+
+    public static int getDificultad() {
+        return dificultad;
+    }
+
+    public static int getVelocidad() {
+        return velocidad;
     }
 
     private void configuraciones() {
@@ -142,7 +153,6 @@ public class Controller {
         p1.start();
     }
 
-
     private void generarBola() {
         try {
             scene.getRootPane().getChildren().remove(bola);
@@ -248,14 +258,6 @@ public class Controller {
 
     private double getBola_Y() {
         return bola.getTranslateY();
-    }
-
-    public static int getDificultad() {
-        return dificultad;
-    }
-
-    public static int getVelocidad() {
-        return velocidad;
     }
 
     private void decrementarDificultad() {

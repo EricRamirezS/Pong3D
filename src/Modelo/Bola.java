@@ -1,21 +1,21 @@
-package Model;
+package Modelo;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
-public class Bola extends Group{
+public class Bola extends Group {
     private double DireccionV = 1;
     private double Velocidad = 40;
     private double AnguloX = 0.5;
     private double AnguloY = 0.5;
     private boolean canIncreaseSpeed = true;
 
-    public Bola(){
+    public Bola() {
         Rectangle[] rectangles = new Rectangle[6];
         for (int i = 0; i < 6; i++) {
-            rectangles[i] = new Rectangle(20,20, Color.WHITE);
+            rectangles[i] = new Rectangle(20, 20, Color.WHITE);
         }
         rectangles[1].setFill(Color.GRAY);
         rectangles[2].setFill(Color.GRAY);
@@ -45,7 +45,7 @@ public class Bola extends Group{
         return Velocidad;
     }
 
-    public void cambiarDireccion(int direccion){
+    public void cambiarDireccion(int direccion) {
         if (direccion == 0) {
             if (Velocidad < 0)
                 Velocidad *= -1;
@@ -56,8 +56,9 @@ public class Bola extends Group{
         }
 
     }
+
     public void incrementarVelocidad() {
-        Velocidad*=1.1 ;
+        Velocidad *= 1.1;
     }
 
     public double getAnguloX() {
@@ -68,29 +69,34 @@ public class Bola extends Group{
         return AnguloY;
     }
 
-    public void cambiarDireccionV(int dir){
-        switch (dir){
-            case 0:
-                if(DireccionV<0)
-                    DireccionV*=-1;
-                break;
-            case 1:
-                if(DireccionV>0)
-                    DireccionV*=-1;
-        }
-
-    }
-    public double getDireccionV(){return DireccionV;}
     public void setAnguloY(double anguloY) {
         AnguloY = Math.abs(anguloY);
-        if (AnguloY>=0.85) AnguloY=0.85;
+        if (AnguloY >= 0.85) AnguloY = 0.85;
         AnguloX = 1 - AnguloY;
     }
 
-    public boolean canIncreaseSpeed(){
+    public void cambiarDireccionV(int dir) {
+        switch (dir) {
+            case 0:
+                if (DireccionV < 0)
+                    DireccionV *= -1;
+                break;
+            case 1:
+                if (DireccionV > 0)
+                    DireccionV *= -1;
+        }
+
+    }
+
+    public double getDireccionV() {
+        return DireccionV;
+    }
+
+    public boolean canIncreaseSpeed() {
         return canIncreaseSpeed;
     }
-    public void setCanIncreaseSpeed(boolean bln){
+
+    public void setCanIncreaseSpeed(boolean bln) {
         canIncreaseSpeed = bln;
     }
 }
