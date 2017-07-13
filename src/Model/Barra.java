@@ -7,6 +7,7 @@ import javafx.scene.transform.Rotate;
 
 public class Barra extends Group {
     private double direccion;
+
     public Barra() {
         Rectangle[] rectangles = new Rectangle[4];
         for (int i = 0; i < 4; i++) {
@@ -39,8 +40,11 @@ public class Barra extends Group {
         cubes[1].setRotate(90);
     }
 
-    public void setDireccion(double dir){
-        direccion=dir;
+    public void setDireccion(double dir) {
+        direccion = dir;
     }
-    public double getDireccion(){return direccion;}
+
+    public double getDireccion() {
+        return direccion;
+    }
 }
