@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="Pong3D">
+    <output-path>$PROJECT_DIR$/out/artifacts/Pong3D</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Controlador.Main" />
+        <option name="description" value="" />
+        <option name="height" value="480" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Pong 3D" />
+        <option name="vendor" value="Eric Ramirez" />
+        <option name="version" value="1" />
+        <option name="width" value="640" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Pong3D.jar">
+        <element id="module-output" name="Pong3D" />
+      </element>
+    </root>
+  </artifact>
+</component>
