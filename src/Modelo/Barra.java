@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-import static Controlador.Contolador.*;
+import static Controlador.Controlador.*;
 
 public class Barra extends Group {
     private double direccion;
@@ -51,7 +51,7 @@ public class Barra extends Group {
         } else movilidadCPU();
     }
 
-    public double getDireccion() {
+    double getDireccion() {
         return direccion;
     }
 
@@ -65,14 +65,14 @@ public class Barra extends Group {
             protected Void call() throws Exception {
                 double bola_Y = getBola_Y();
                 double movimiento = 0;
-                if (bola_Y > getTranslateY() + 60)
+                if (bola_Y > getTranslateY() + 90 - 55)
                     if (getTranslateY() < 480 - 90) {
-                        movimiento = 8;
+                        movimiento = 12;
                         setDireccion(0.2);
                     } else setDireccion(0);
-                else if (bola_Y < getTranslateY() + 50)
+                else if (bola_Y < getTranslateY() - 20 + 55)
                     if (getTranslateY() > 0) {
-                        movimiento = -7;
+                        movimiento = -12;
                         setDireccion(-0.2);
                     } else setDireccion(0);
 

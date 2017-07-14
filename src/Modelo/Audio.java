@@ -6,11 +6,9 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class Audio {
-    private static final String Path = new File("audio/ti.mp3").toURI().toString();
-    private static final Media media = new Media(Path);
-    private static final MediaPlayer player = new MediaPlayer(media);
+    private static final MediaPlayer player = new MediaPlayer(new Media(new File("audio/ti.mp3").toURI().toString()));
 
-    public static void playSound() {
+    static void playSound() {
         player.stop();
         player.play();
     }

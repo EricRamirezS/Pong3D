@@ -16,17 +16,18 @@ public class Main extends Application {
     }
 
     static void setScene(Scene scene) {
+
         stage.setScene(scene);
-        delayFix();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        delayFix();
         stage = primaryStage;
         stage.setTitle("Pong 3D");
         stage.getIcons().add(new Image("Imagen/pong.png"));
         stage.setResizable(false);
-        new Contolador();
+        new Controlador();
         stage.show();
     }
 }

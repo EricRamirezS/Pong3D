@@ -1,6 +1,6 @@
 package Vista;
 
-import Controlador.Contolador;
+import Controlador.Controlador;
 import Modelo.Barra;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
@@ -24,7 +24,7 @@ public class Vista_juego extends Scene {
         setCamera(new PerspectiveCamera());
         root.setStyle("-fx-background-color: Black");
         Rectangle midline = new Rectangle(5, 500);
-        config = new Text(" Q : Incrementar Dificultad. " + Contolador.getDificultad() + "\n A : Decrecer Dificultad.\n Z: Dificultad por defecto.\n W : Aumentar Velocidad. " + Contolador.getVelocidad() + "\n A : Disminuir Velocidad.\n X : Velocidad por defecto.");
+        config = new Text(" Q : Incrementar Dificultad. " + Controlador.getDificultad() + "\n A : Decrecer Dificultad.\n Z: Dificultad por defecto.\n W : Aumentar Velocidad. " + Controlador.getVelocidad() + "\n A : Disminuir Velocidad.\n X : Velocidad por defecto.");
         root.getChildren().addAll(circle, midline, PuntajeP1, PuntajeP2, config);
         circle.setTranslateX(640 / 2);
         circle.setTranslateY(480 / 2);
@@ -77,6 +77,6 @@ public class Vista_juego extends Scene {
     }
 
     public void updateText() {
-        config.setText(" Q : Incrementar Dificultad. " + Contolador.getDificultad() + "\n A : Decrecer Dificultad.\n Z: Dificultad por defecto.\n W : Aumentar Velocidad. " + Contolador.getVelocidad() + "\n A : Disminuir Velocidad.\n X : Velocidad por defecto.");
+        config.setText(" Q : Incrementar Dificultad. " + Controlador.getDificultad() + "\n A : Decrecer Dificultad.\n Z: Dificultad por defecto.\n W : Aumentar Velocidad. " + Controlador.getVelocidad() + "\n A : Disminuir Velocidad.\n X : Velocidad por defecto.");
     }
 }
