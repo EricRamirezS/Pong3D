@@ -15,9 +15,9 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Contolador {
-    private static int dificultad = 10, velocidad = 5;
+    private static int dificultad = 7, velocidad = 5;
+    private static Bola bola = new Bola();
     private Vista_juego scene;
-    private Bola bola;
     private Barra CPUGroup, PlayerGroup;
 
     Contolador() {
@@ -26,13 +26,11 @@ public class Contolador {
         CPUGroup = scene.getCPU();
         PlayerGroup = scene.getJugador();
 
+        Main.setScene(scene);
+
         generarBola();
         movilidadP1();
-        MovimientoP1();
-        movilidadCPU();
         configuraciones();
-
-        Main.setScene(scene);
     }
 
     public static int getDificultad() {
@@ -41,6 +39,10 @@ public class Contolador {
 
     public static int getVelocidad() {
         return velocidad;
+    }
+
+    public static double getBola_Y() {
+        return bola.getTranslateY();
     }
 
     private void configuraciones() {
@@ -67,41 +69,6 @@ public class Contolador {
         });
     }
 
-    private void movilidadCPU() {
-        Task<Void> CPU = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                double bola_Y = getBola_Y();
-                double movimiento = 0;
-                if (bola_Y > CPUGroup.getTranslateY() + 60)
-                    if (CPUGroup.getTranslateY() < 480 - 90) {
-                        movimiento = 7;
-                        CPUGroup.setDireccion(0.2);
-                    } else CPUGroup.setDireccion(0);
-                else if (bola_Y < CPUGroup.getTranslateY() + 50)
-                    if (CPUGroup.getTranslateY() > 0) {
-                        movimiento = -7;
-                        CPUGroup.setDireccion(-0.2);
-                    } else CPUGroup.setDireccion(0);
-
-                Timeline tl = new Timeline(
-                        new KeyFrame(Duration.millis((500 / getDificultad()) >= 1 ? 500 / getDificultad() : 1),
-                                new KeyValue(CPUGroup.translateYProperty(), CPUGroup.getTranslateY() + movimiento))
-                );
-                tl.setOnFinished(e -> {
-                    try {
-                        call();
-                    } catch (Exception ignored) {
-                    }
-                });
-                tl.play();
-                return null;
-            }
-        };
-        Thread CPU1 = new Thread(CPU);
-        CPU1.start();
-    }
-
     private void movilidadP1() {
         scene.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.UP && PlayerGroup.getTranslateY() > 0) {
@@ -111,46 +78,6 @@ public class Contolador {
             } else PlayerGroup.setDireccion(0);
         });
         scene.setOnKeyReleased(e -> PlayerGroup.setDireccion(0));
-    }
-
-    private void MovimientoP1() {
-        Task<Void> P1 = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try {
-                    double movimiento = PlayerGroup.getDireccion() * 5 * velocidad;
-                    Timeline tl = new Timeline();
-                    KeyFrame[] keyFrames = new KeyFrame[50];
-                    for (int i = 0; i < 49; i++) {
-                        keyFrames[i] = new KeyFrame(Duration.millis(i + 1), e -> {
-                            if ((PlayerGroup.getTranslateY() <= 0 && PlayerGroup.getDireccion() <= 0)
-                                    ||
-                                    (PlayerGroup.getTranslateY() >= 480 - 90 && PlayerGroup.getDireccion() >= 0)) {
-                                tl.stop();
-                                try {
-                                    call();
-                                } catch (Exception ignored) {
-                                }
-                            }
-                        });
-                    }
-                    keyFrames[49] = new KeyFrame(Duration.millis(50), new KeyValue(PlayerGroup.translateYProperty(), PlayerGroup.getTranslateY() + movimiento));
-
-                    tl.getKeyFrames().addAll(keyFrames);
-                    tl.setOnFinished(e -> {
-                        try {
-                            call();
-                        } catch (Exception ignored) {
-                        }
-                    });
-                    tl.play();
-                } catch (Exception ignored) {
-                }
-                return null;
-            }
-        };
-        Thread p1 = new Thread(P1);
-        p1.start();
     }
 
     private void generarBola() {
@@ -256,16 +183,12 @@ public class Contolador {
         }
     }
 
-    private double getBola_Y() {
-        return bola.getTranslateY();
-    }
-
     private void decrementarDificultad() {
         dificultad = dificultad - 1 > 0 ? dificultad - 1 : 1;
     }
 
     private void incrementarDificultad() {
 
-        dificultad = dificultad + 1 <= 500 ? dificultad + 1 : 500;
+        dificultad = dificultad + 1 <= 600 ? dificultad + 1 : 600;
     }
 }

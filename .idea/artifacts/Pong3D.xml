@@ -17,6 +17,7 @@
       <element id="archive" name="Pong3D.jar">
         <element id="module-output" name="Pong3D" />
       </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/audio" />
     </root>
   </artifact>
 </component>

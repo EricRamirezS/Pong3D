@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import static Modelo.Audio.delayFix;
+
 public class Main extends Application {
 
     private static Stage stage;
@@ -15,6 +17,7 @@ public class Main extends Application {
 
     static void setScene(Scene scene) {
         stage.setScene(scene);
+        delayFix();
     }
 
     @Override

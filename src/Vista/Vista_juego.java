@@ -41,10 +41,10 @@ public class Vista_juego extends Scene {
         PuntajeP2.setFont(new Font("CONSOLAS", 60));
         midline.setX(640 / 2 - 2);
         midline.setFill(Color.WHITE);
-        Jugador = new Barra();
+        Jugador = new Barra(true);
         Jugador.setTranslateX(30);
         Jugador.setTranslateY(195);
-        CPU = new Barra();
+        CPU = new Barra(false);
         CPU.setTranslateX(580);
         CPU.setTranslateY(195);
         root.getChildren().addAll(Jugador, CPU);
